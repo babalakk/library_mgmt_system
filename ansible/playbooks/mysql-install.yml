@@ -5,4 +5,4 @@
   vars_files:
       - ../vars/mysql.yml
   roles:
-      - mysql
+      - { role: geerlingguy.mysql }
