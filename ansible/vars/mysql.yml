@@ -1,9 +1,9 @@
-mysql_root_password: q
+mysql_root_password: ''
 mysql_bind_address: '127.0.0.1'
 mysql_databases:
   - name: example_db
 mysql_users:
   - name: example_user
     host: "%"
-    password: similarly-secure-password
+    password: ''
     priv: "example_db.*:ALL"

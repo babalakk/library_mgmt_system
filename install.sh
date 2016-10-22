@@ -1,5 +1,7 @@
 #!/bin/bash
 
+apt update && apt install ansible -y
+
 PLAYBOOKS="mysql-install.yml"
 
 ansible-galaxy install -r ansible/requirements.yml
