@@ -25,15 +25,25 @@ setup_ansible() {
 	cd -
 }
 
-main() {
+process_vars() {
+	local vars=""
+	local buf=""
+	for v in $ANSIBLE_VARS; do
+		buf=`echo $v | sed 's/ //g'`
+		vars="$vars -e @ansible/vars/$buf"
+	done
+	echo "$vars"
+}
 
+main() {
 	apt update && apt install gcc python-dev python-setuptools libssl-dev -y
 	[ -d $ANSIBLE_WORKING_DIR ] && setup_ansible || install_ansible
 
 	ansible-galaxy install -r ansible/requirements.yml
 
+	local ansible_vars="`process_vars`"
 	for f in $PLAYBOOKS; do
-		ansible-playbook ansible/playbooks/${f} -e @${ANSIBLE_VARS}
+		ansible-playbook ansible/playbooks/${f} $ansible_vars
 	done
 }
 

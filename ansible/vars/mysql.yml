@@ -1,5 +1,6 @@
 mysql_root_password: 'q'
 mysql_bind_address: '127.0.0.1'
+mysql_root_password_update: no
 mysql_databases:
   - name: example_db
     encoding: utf8
