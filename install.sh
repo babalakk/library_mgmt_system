@@ -3,7 +3,6 @@
 set -x -e
 
 PLAYBOOKS="\
-phpmyadmin-install.yml
 mysql-install.yml
 "
 
@@ -14,12 +13,16 @@ install_ansible() {
 	git clone $ANSIBLE_REPO $ANSIBLE_WORKING_DIR --recursive
 	cd $ANSIBLE_WORKING_DIR
 	source ./hacking/env-setup
+	easy_install pip
+	pip install paramiko PyYAML Jinja2 httplib2 six
 	cd -
 }
 
 main() {
-	[ ! -d $ANSIBLE_WORKING_DIR ] &&
-		install_ansible
+
+	apt update && apt install python-dev python-setuptools libssl-dev -y
+	[ -d $ANSIBLE_WORKING_DIR ] && rm -rf $ANSIBLE_WORKING_DIR
+	install_ansible
 
 	ansible-galaxy install -r ansible/requirements.yml
 
