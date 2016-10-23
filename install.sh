@@ -2,7 +2,11 @@
 
 set -x -e
 
-PLAYBOOKS="mysql-install.yml"
+PLAYBOOKS="\
+phpmyadmin-install.yml
+mysql-install.yml
+"
+
 ANSIBLE_REPO="git://github.com/ansible/ansible.git"
 ANSIBLE_WORKING_DIR="/opt/ansible"
 

@@ -1,0 +1,3 @@
+phpmyadmin_mysql_user: root
+phpmyadmin_mysql_password: 'q'
+phpmyadmin_mysql_host: localhost

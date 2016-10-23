@@ -1,4 +1,4 @@
-mysql_root_password: 'q'
+mysql_root_password: 'root'
 mysql_bind_address: '127.0.0.1'
 mysql_databases:
   - name: example_db
