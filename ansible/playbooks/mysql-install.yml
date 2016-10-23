@@ -1,7 +1,6 @@
 ---
 - name: Install and setup mysql server
   hosts: localhost
-  become: yes
   vars_files:
       - ../vars/mysql.yml
   roles:
