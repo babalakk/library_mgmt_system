@@ -1,8 +1,6 @@
 ---
 - name: Install and setup mysql server
   hosts: localhost
-  vars_files:
-      - ../vars/mysql.yml
   roles:
       - { role: geerlingguy.mysql }
 

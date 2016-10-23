@@ -1,7 +1,0 @@
-- name: Install phpMyAdmin
-  hosts: localhost
-  vars_files:
-      - ../vars/phpmyadmin.yml
-      - ../vars/mysql.yml
-  roles:
-      - { role: geerlingguy.phpmyadmin }
