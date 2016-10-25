@@ -39,7 +39,7 @@ main() {
 	apt update && apt install gcc python-dev python-setuptools libssl-dev -y
 	[ -d $ANSIBLE_WORKING_DIR ] && setup_ansible || install_ansible
 
-	ansible-galaxy install -r ansible/requirements.yml
+	#ansible-galaxy install -r ansible/requirements.yml
 
 	local ansible_vars="`process_vars`"
 	for f in $PLAYBOOKS; do
