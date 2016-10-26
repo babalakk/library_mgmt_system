@@ -1,1 +1,7 @@
 dummy: "dummy"
+essential_apt_packages:
+    - vim
+    - python-pip
+    - net-tools
+essential_pip_packages:
+    - flask

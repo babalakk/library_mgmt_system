@@ -3,6 +3,7 @@
 set -x -e
 
 PLAYBOOKS="\
+essential-install.yml
 mysql-install.yml
 "
 
