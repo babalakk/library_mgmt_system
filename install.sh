@@ -5,11 +5,11 @@ set -x -e
 PLAYBOOKS="\
 essential-install.yml
 mysql-install.yml
+nginx-install.yml
 "
 
 ANSIBLE_REPO="git://github.com/ansible/ansible.git"
 ANSIBLE_WORKING_DIR="/opt/ansible"
-ANSIBLE_VARS=`ls ansible/vars`
 
 install_ansible() {
 	git clone $ANSIBLE_REPO $ANSIBLE_WORKING_DIR --recursive
@@ -26,6 +26,11 @@ setup_ansible() {
 	cd -
 }
 
+prepare_playbook() {
+    cat > playbook.sh << 'EOF'
+#!/bin/bash
+
+ANSIBLE_VARS=`ls ansible/vars`
 process_vars() {
 	local vars=""
 	local buf=""
@@ -36,15 +41,21 @@ process_vars() {
 	echo "$vars"
 }
 
+ansible_vars="`process_vars`"
+ansible-playbook $ansible_vars $@
+    
+EOF
+    chmod 755 playbook.sh
+}
+
 main() {
 	apt update && apt install gcc python-dev python-setuptools libssl-dev -y
 	[ -d $ANSIBLE_WORKING_DIR ] && setup_ansible || install_ansible
 
 	#ansible-galaxy install -r ansible/requirements.yml
-
-	local ansible_vars="`process_vars`"
+    prepare_playbook
 	for f in $PLAYBOOKS; do
-		ansible-playbook ansible/playbooks/${f} $ansible_vars
+		./playbook.sh ansible/playbooks/${f}
 	done
 }
 
