@@ -3,25 +3,10 @@
   hosts: localhost
   tasks:
       - name: install mysql
-        apt: name=mysql-server update_cache=yes
+        apt: name=mariadb-server update_cache=yes
 
       - name: add mysql user
         user: name=mysql home=/var/lib/mysql
-
-      - name: set [client] session configure
-        lineinfile: dest=/etc/mysql/debian.cnf insertafter="^\[client\]" line="default-character-set=utf8"
-
-      - name: set [mysqld] session configure
-        lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf insertafter="^\[mysqld\]" line="collation-server = utf8_unicode_ci"
-
-      - name: set [mysqld] session configure
-        lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf insertafter="^\[mysqld\]" line="init-connect='SET NAMES utf8'"
-
-      - name: set [mysqld] session configure
-        lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf insertafter="^\[mysqld\]" line="character-set-server = utf8"
-
-      - name: set [mysql] session configure
-        lineinfile: dest=/etc/mysql/conf.d/mysql.cnf insertafter="^\[mysql\]" line="default-character-set=utf8"
 
       - name: restart mysql service
         service: name=mysql state=restarted
