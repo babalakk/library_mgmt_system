@@ -20,16 +20,11 @@ install_ansible() {
 	cd -
 }
 
-setup_ansible() {
-	cd $ANSIBLE_WORKING_DIR
-	source ./hacking/env-setup
-	cd -
-}
-
 prepare_playbook() {
     cat > playbook.sh << 'EOF'
 #!/bin/bash
 
+source /opt/ansible/hacking/env-setup
 ANSIBLE_VARS=`ls ansible/vars`
 process_vars() {
 	local vars=""
@@ -50,7 +45,7 @@ EOF
 
 main() {
 	apt update && apt install gcc python-dev python-setuptools libssl-dev -y
-	[ -d $ANSIBLE_WORKING_DIR ] && setup_ansible || install_ansible
+	[ ! -d $ANSIBLE_WORKING_DIR ] && install_ansible
 
 	#ansible-galaxy install -r ansible/requirements.yml
     prepare_playbook
