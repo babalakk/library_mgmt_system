@@ -30,7 +30,4 @@ class ReverseProxied(object):
         if scheme:
             environ['wsgi.url_scheme'] = scheme
 
-	import pdb; pdb.set_trace()
-	port = environ.get('HTTP_X_SCRIPT_PORT', '')
-
         return self.app(environ, start_response)

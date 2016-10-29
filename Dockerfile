@@ -17,11 +17,12 @@ RUN apt-get install -y net-tools
 RUN apt-get install -y nginx
 RUN rm -rf /var/lib/-y apt/lists/*
 RUN pip install flask
+RUN pip install flask-sqlalchemy
 
-ADD start.sh /start.sh
+ADD script/start.sh /start.sh
 ADD conf/nginx-default /etc/nginx/sites-available/default
-ADD flask /flask
+ADD lms /lms
 
-VOLUME ["/mnt", "/var/lib/mysql"]
+VOLUME ["/mnt", "/lms", "/var/lib/mysql"]
 EXPOSE 80 443
 CMD ["/start.sh"]

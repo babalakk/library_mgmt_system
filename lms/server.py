@@ -40,6 +40,10 @@ def new():
             return redirect(url_for('show_all', _external=True))
     return render_template('new.html')
 
+@app.route('/hello')
+def hello():
+    return 'hello'
+
 if __name__ == '__main__':
     db.create_all()
     app.run(debug = True, port=5000)
