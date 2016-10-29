@@ -1,8 +1,0 @@
-dummy: "dummy"
-essential_apt_packages:
-    - vim
-    - python-pip
-    - net-tools
-    - inetutils-ping
-essential_pip_packages:
-    - flask
