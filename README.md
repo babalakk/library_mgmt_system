@@ -4,12 +4,12 @@
 * git
 
 ```
-git clone https://github.com/ddzero2c/library_mgmt_system.git $HOME/
+git clone https://github.com/ddzero2c/library_mgmt_system.git $HOME/library_mgmt_system
 ```
 
 # Build image
 ```
-docker build -t "ubuntu/lms" ${library_mgmt_system_forder}
+docker build -t "ubuntu/lms" $HOME/library_mgmt_system
 ```
 
 # Run
